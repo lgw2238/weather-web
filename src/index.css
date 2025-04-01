@@ -1,0 +1,223 @@
+@import '@fontsource/noto-sans-kr/400.css';
+@import '@fontsource/noto-sans-kr/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Forest Theme */
+  --forest-primary: #2C5530;
+  --forest-secondary: #8BA888;
+  --forest-background: #F1F7E7;
+  --forest-text: #2C3E2D;
+  --forest-accent: #4A7856;
+  
+  /* Sea Theme */
+  --sea-primary: #1B4965;
+  --sea-secondary: #62B6CB;
+  --sea-background: #EBF5F7;
+  --sea-text: #1B3B52;
+  --sea-accent: #5FA8D3;
+  
+  /* Warm Theme */
+  --warm-primary: #F9B384;
+  --warm-secondary: #FFD9C0;
+  --warm-background: #FFF1E6;
+  --warm-text: #8B5E3C;
+  --warm-accent: #FFAE8F;
+}
+
+:root[data-theme='dark'] {
+  --spring-primary: #2d3748;
+  --spring-secondary: #1a202c;
+  --spring-accent: #4a5568;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px; /* 카드 간격 */
+  padding: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px; /* 최대 너비 */
+  margin: 0 auto; /* 가운데 정렬 */
+  overflow: hidden; /* 내부 요소가 컨테이너 밖으로 나가지 않도록 설정 */
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  @apply transition-colors duration-300;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+body[data-theme='light'] .main-container {
+  background: #f9f9fa;
+}
+
+body[data-theme='dark'] .main-container {
+  background: linear-gradient(135deg, #1a202c, #4a5568);
+}
+
+body[data-theme='light'] {
+  background: linear-gradient(135deg, var(--spring-primary), var(--spring-secondary));
+  @apply text-black;
+}
+
+body[data-theme='dark'] {
+  background: linear-gradient(135deg, var(--spring-primary), var(--spring-secondary));
+  @apply text-yellow-300;
+}
+
+body[data-theme='forest'] {
+  --primary: var(--forest-primary);
+  --secondary: var(--forest-secondary);
+  --background: var(--forest-background);
+  --text: var(--forest-text);
+  --accent: var(--forest-accent);
+}
+
+body[data-theme='sea'] {
+  --primary: var(--sea-primary);
+  --secondary: var(--sea-secondary);
+  --background: var(--sea-background);
+  --text: var(--sea-text);
+  --accent: var(--sea-accent);
+}
+
+body[data-theme='warm'] {
+  --primary: var(--warm-primary);
+  --secondary: var(--warm-secondary);
+  --background: var(--warm-background);
+  --text: var(--warm-text);
+  --accent: var(--warm-accent);
+}
+
+.animate-text {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.weather-card {
+  flex: 1 1 calc(33.333% - 32px); /* 3열 레이아웃, 카드 간격 고려 */
+  max-width: calc(33.333% - 32px);
+  min-width: 280px; /* 최소 너비 */
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+body[data-theme='light'] .weather-card {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+body[data-theme='dark'] .weather-card {
+  background: rgba(45, 55, 72, 0.8);
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .weather-card {
+    flex: 1 1 calc(50% - 32px); /* 2열 레이아웃 */
+    max-width: calc(50% - 32px);
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-card {
+    flex: 1 1 100%; /* 1열 레이아웃 */
+    max-width: 100%;
+  }
+}
+
+.chat-container {
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+body[data-theme='light'] .chat-container {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+body[data-theme='dark'] .chat-container {
+  background: rgba(45, 55, 72, 0.9);
+}
+
+.theme-toggle {
+  @apply fixed top-4 right-4 p-3 rounded-full transition-all duration-300 ease-in-out;
+}
+
+body[data-theme='light'] .theme-toggle {
+  @apply bg-white text-gray-800 hover:bg-gray-100;
+}
+
+body[data-theme='dark'] .theme-toggle {
+  @apply bg-gray-800 text-white hover:bg-gray-700;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.weather-icon {
+  transition: all 0.3s ease;
+}
+
+.weather-card:hover .weather-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* 공통 컴포넌트 스타일 */
+.button {
+  background-color: var(--primary);
+  color: var(--background);
+}
+
+.card {
+  background-color: var(--secondary);
+  color: var(--text);
+  border: 1px solid var(--accent);
+}
+
+.input {
+  background-color: var(--background);
+  color: var(--text);
+  border: 1px solid var(--primary);
+}
+
+/* 호버 효과 */
+.button:hover {
+  background-color: var(--accent);
+}
+
+.card:hover {
+  box-shadow: 0 0 10px var(--accent);
+}
