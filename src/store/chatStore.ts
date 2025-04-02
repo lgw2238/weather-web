@@ -9,11 +9,14 @@ interface Message {
 
 interface ChatState {
   messages: Message[];
+  lastCity: string | null; // 마지막으로 선택된 도시
   addMessage: (text: string, isUser: boolean) => void;
+  setLastCity: (city: string) => void; // 마지막 도시 업데이트
 }
 
 export const useChatStore = create<ChatState>((set) => ({
   messages: [],
+  lastCity: null,
   addMessage: (text: string, isUser: boolean) =>
     set((state) => ({
       messages: [
@@ -25,5 +28,9 @@ export const useChatStore = create<ChatState>((set) => ({
           isUser,
         },
       ],
+    })),
+  setLastCity: (city: string) =>
+    set(() => ({
+      lastCity: city,
     })),
 }));
