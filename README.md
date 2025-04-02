@@ -101,7 +101,7 @@ npm run dev
 --warm-background: #FFF1E6;
 ```
 
-## 이미지 섹션
+### 도메인 이미지
 
 <div style="display: flex; justify-content: space-between;">
   <img src="public/images/weather-app%201.png" alt="Image 1" width="200" height="200"/>
